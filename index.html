@@ -133,6 +133,20 @@
       border-color: #6c63ff;
       outline: none;
     }
+    .notice-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(255, 223, 0, 0.5);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+      animation: slideIn 0.3s ease-in-out forwards;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -191,7 +205,7 @@
     <h3 style="margin-top:2rem;">Accepted Payment Methods</h3>
     <div class="payment-methods">
       <label for="payment-select">Select Payment:</label>
-      <select id="payment-select">
+      <select id="payment-select" onchange="showNotice()">
         <option value="paypal">PayPal</option>
         <option value="fib">FIB</option>
         <option value="robux">Robux</option>
@@ -199,6 +213,7 @@
         <option value="adopt">Adopt Me</option>
       </select>
     </div>
+    <div id="notice" class="notice-box">If you click Buy Key, you will be redirected to our Discord server to complete the transaction.</div>
   </div>
 
   <div id="about" class="tab-content">
@@ -221,13 +236,28 @@
         });
     }
 
+    function showNotice() {
+      const payment = document.getElementById('payment-select').value;
+      const notice = document.getElementById('notice');
+      if (["robux", "adopt", "mm2"].includes(payment)) {
+        notice.style.display = 'block';
+      } else {
+        notice.style.display = 'none';
+      }
+    }
+
     function purchaseKey(type) {
       const payment = document.getElementById('payment-select').value;
       if (["robux", "adopt", "mm2"].includes(payment)) {
         window.open("https://discord.gg/KkzMrTzSF4", "_blank");
       } else {
         const deviceInfo = navigator.userAgent;
-        const key = [...Array(50)].map(() => Math.random().toString(36)[2]).join('').toUpperCase();
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let key = "TerminKey_";
+        const length = Math.floor(Math.random() * 6) + 40;
+        for (let i = 0; i < length; i++) {
+          key += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
         alert(`Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo}\n\nKey: ${key}`);
       }
     }
