@@ -5,63 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Termin Script Hub</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: #111;
+      background: #0e0e0e;
       color: white;
     }
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #222;
-      padding: 1rem;
+      background: #1f1f1f;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     nav .tabs {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
     }
-    nav .discord {
-      margin-left: auto;
+    nav a:hover {
+      color: #0f0;
+    }
+    nav .discord img {
+      transition: transform 0.3s;
+    }
+    nav .discord img:hover {
+      transform: scale(1.1);
     }
     .tab-content {
       display: none;
       padding: 2rem;
+      animation: fadeIn 0.3s ease-in-out;
     }
     .tab-content.active {
       display: block;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
     textarea {
       width: 100%;
       height: 100px;
-      background: #222;
+      background: #191919;
       color: #0f0;
       font-family: monospace;
       padding: 1rem;
-      border: 1px solid #555;
-      border-radius: 5px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      resize: none;
     }
     .script-block {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
     .copy-btn {
-      background: #0f0;
+      background: linear-gradient(to right, #0f0, #0a0);
       border: none;
-      padding: 0.5rem 1rem;
-      margin-top: 0.5rem;
+      padding: 0.6rem 1.2rem;
       cursor: pointer;
       font-weight: bold;
       color: #000;
-      border-radius: 5px;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-    h2 { color: #0f0; }
-    ul { line-height: 1.8; }
+    .copy-btn:hover {
+      background: linear-gradient(to right, #00cc00, #009900);
+    }
+    h2 {
+      color: #0f0;
+    }
+    ul {
+      line-height: 1.8;
+    }
+    .keys-boxes {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .key-box {
+      flex: 1;
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid #333;
+    }
+    .key-box h3 {
+      color: #0f0;
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
@@ -100,11 +138,20 @@
 
   <div id="keys" class="tab-content">
     <h2>Buy a Key</h2>
-    <ul>
-      <li>7 Days Key: $3</li>
-      <li>30 Days Key: $10</li>
-      <li>Lifetime Key: $30</li>
-    </ul>
+    <div class="keys-boxes">
+      <div class="key-box">
+        <h3>7 Days Key</h3>
+        <p>Price: $3</p>
+      </div>
+      <div class="key-box">
+        <h3>30 Days Key</h3>
+        <p>Price: $10</p>
+      </div>
+      <div class="key-box">
+        <h3>Lifetime Key</h3>
+        <p>Price: $30</p>
+      </div>
+    </div>
     <h3>Accepted Payment Methods:</h3>
     <ul>
       <li>PayPal</li>
@@ -114,12 +161,12 @@
       <li>Adopt Me Pets</li>
       <li>And More...</li>
     </ul>
-    <p>Customize this section with specific instructions for buyers or link your payment form/store.</p>
+    <p>Customize this section with your preferred payment method details or links to your payment form/store.</p>
   </div>
 
   <div id="about" class="tab-content">
     <h2>About Termin Script</h2>
-    <p>Put your own description here about what Termin Script does, how it works, or what features it offers.</p>
+    <p>Termin Script offers powerful tools for Roblox games, including universal features, automation, protection, and control functionalities to enhance your experience. Stay safe, stay strong, and dominate with Termin!</p>
   </div>
 
   <script>
