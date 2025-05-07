@@ -1,156 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Termin Script Hub</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termin Script Keys</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/react@18.0.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prop-types@15.8.1/prop-types.min.js"></script>
   <style>
-    /* [Styles unchanged, truncated for brevity] */
-
-    .generated-key {
-      margin-top: 1rem;
-      background: #e0ffe0;
-      border: 1px solid #6c63ff;
-      border-radius: 6px;
-      padding: 1rem;
-      color: #333;
-      font-weight: bold;
-      display: none;
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
     }
 
-    .notice-box {
-      margin-top: 1rem;
-      padding: 1rem;
-      background: rgba(255, 223, 0, 0.5);
-      border-radius: 8px;
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
       text-align: center;
-      font-weight: bold;
-      display: none;
-      animation: slideIn 0.3s ease-in-out forwards;
+      color: #333;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
 
-    select#payment-select {
-      padding: 0.6rem;
-      font-size: 1rem;
+    .card {
+      background-color: white;
       border-radius: 8px;
-      border: 1px solid #aaa;
-      background: #f8f8f8;
-      width: 100%;
-      max-width: 300px;
-      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
-    select#payment-select:focus {
-      border-color: #6c63ff;
-      outline: none;
-      background: #fff;
+    .card-header {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      font-size: 1.25rem;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table th, .table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .table th {
+      background-color: #f4f4f9;
+    }
+
+    .badge {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .badge-danger {
+      background-color: #dc3545;
+    }
+
+    .alert {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <!-- [Nav and other tabs unchanged] -->
-
-  <div id="keys" class="tab-content">
-    <h2>Buy a Key</h2>
-    <div class="keys-boxes">
-      <div class="key-box">
-        <h3>7 Days Key</h3>
-        <p>$3</p>
-        <button onclick="purchaseKey('7 Days')">Buy Now</button>
-      </div>
-      <div class="key-box">
-        <h3>30 Days Key</h3>
-        <p>$10</p>
-        <button onclick="purchaseKey('30 Days')">Buy Now</button>
-      </div>
-      <div class="key-box">
-        <h3>Lifetime Key</h3>
-        <p>$30</p>
-        <button onclick="purchaseKey('Lifetime')">Buy Now</button>
-      </div>
-    </div>
-
-    <h3 style="margin-top:2rem;">Accepted Payment Methods</h3>
-    <div class="payment-methods">
-      <label for="payment-select">Select Payment:</label>
-      <select id="payment-select" onchange="showNotice()">
-        <option value="paypal">PayPal</option>
-        <option value="fib">FIB</option>
-        <option value="robux">Robux</option>
-        <option value="mm2">MM2</option>
-        <option value="adopt">Adopt Me</option>
-      </select>
-    </div>
-
-    <div id="notice" class="notice-box">
-      If you click Buy Key, you will be redirected to our Discord server to complete the transaction.
-    </div>
-
-    <div id="generated-key" class="generated-key"></div>
+  <div class="container">
+    <div id="app"></div>
   </div>
 
-  <!-- [About and other sections] -->
+  <script type="text/javascript">
+    const { useState } = React;
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+    // React component code starts here
+    function Keys() {
+      const [keyName, setKeyName] = useState('');
+      const [keyValue, setKeyValue] = useState('');
+      const [savedKeys, setSavedKeys] = useState([]);
+      const [selectedPayment, setSelectedPayment] = useState('credit-card');
+      const [showConfirmation, setShowConfirmation] = useState(false);
+      const [pendingPurchase, setPendingPurchase] = useState(null);
+      const [showProcessing, setShowProcessing] = useState(false);
+
+      const keyPackages = [
+        {
+          id: '7-days',
+          name: '7 Days Key',
+          duration: '7 days',
+          price: '$3',
+          description: 'Access to all Termin Script features for 7 days'
+        },
+        {
+          id: '30-days',
+          name: '30 Days Key',
+          duration: '30 days',
+          price: '$10',
+          description: 'Access to all Termin Script features for 30 days'
+        },
+        {
+          id: 'lifetime',
+          name: 'Lifetime Key',
+          duration: 'Lifetime',
+          price: '$30',
+          description: 'Permanent access to all Termin Script features'
+        }
+      ];
+
+      const paymentMethods = [
+        { id: 'credit-card', name: 'Credit Card', icon: '💳' },
+        { id: 'paypal', name: 'PayPal', icon: '💵' },
+        { id: 'robux', name: 'Robux', icon: '🎁' },
+      ];
+
+      const handleSaveKey = () => {
+        if (keyName.trim() && keyValue.trim()) {
+          const newKey = {
+            id: Date.now(),
+            name: keyName,
+            value: keyValue
+          };
+          setSavedKeys([...savedKeys, newKey]);
+          setKeyName('');
+          setKeyValue('');
+        }
+      };
+
+      const handleDeleteKey = (id) => {
+        setSavedKeys(savedKeys.filter(key => key.id !== id));
+      };
+
+      const handlePurchase = (packageId) => {
+        const selectedPackage = keyPackages.find(pkg => pkg.id === packageId);
+        if (selectedPackage) {
+          setPendingPurchase(selectedPackage);
+          setShowConfirmation(true);
+        }
+      };
+
+      const completePurchase = () => {
+        setShowProcessing(true);
+        setTimeout(() => {
+          const newKey = {
+            id: Date.now(),
+            name: `${pendingPurchase.name} Key`,
+            value: `KEY-${Math.random().toString(36).substring(2, 12).toUpperCase()}`
+          };
+          setSavedKeys([...savedKeys, newKey]);
+          setShowProcessing(false);
+          setPendingPurchase(null);
+          setShowConfirmation(false);
+        }, 2000);
+      };
+
+      return (
+        <div>
+          <h2>Keys</h2>
+
+          {/* Key Packages */}
+          <div className="card">
+            <div className="card-header">Purchase Termin Script Keys</div>
+            <div className="card-body">
+              <div>
+                {keyPackages.map((pkg) => (
+                  <div key={pkg.id}>
+                    <h4>{pkg.name}</h4>
+                    <p>{pkg.description}</p>
+                    <p><strong>{pkg.price}</strong></p>
+                    <button onClick={() => handlePurchase(pkg.id)} className="button">Purchase</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Saved Keys */}
+          <div className="card">
+            <div className="card-header">Your Saved Keys</div>
+            <div className="card-body">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {savedKeys.map((key) => (
+                    <tr key={key.id}>
+                      <td>{key.name}</td>
+                      <td>{key.value}</td>
+                      <td>
+                        <button onClick={() => handleDeleteKey(key.id)} className="button badge-danger">Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Confirmation Dialog */}
+          {showConfirmation && (
+            <div className="alert">
+              <h4>Confirm Purchase</h4>
+              <p>You are about to purchase a {pendingPurchase.name}. Are you sure?</p>
+              <button onClick={completePurchase} className="button">Confirm</button>
+              <button onClick={() => setShowConfirmation(false)} className="button badge-danger">Cancel</button>
+            </div>
+          )}
+
+          {/* Processing Alert */}
+          {showProcessing && (
+            <div className="alert">
+              <p>Processing your purchase...</p>
+            </div>
+          )}
+        </div>
+      );
     }
 
-    function copyText(button) {
-      const textarea = button.previousElementSibling;
-      navigator.clipboard.writeText(textarea.value).then(() => {
-        button.innerText = 'Copied!';
-        setTimeout(() => button.innerText = 'Copy', 2000);
-      });
-    }
-
-    function showNotice() {
-      const payment = document.getElementById('payment-select').value;
-      const notice = document.getElementById('notice');
-      if (["robux", "adopt", "mm2"].includes(payment)) {
-        notice.style.display = 'block';
-      } else {
-        notice.style.display = 'none';
-      }
-    }
-
-    function purchaseKey(type) {
-      const payment = document.getElementById('payment-select').value;
-      const deviceInfo = navigator.userAgent;
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let key = "TerminKey_";
-      const length = Math.floor(Math.random() * 6) + 40;
-      for (let i = 0; i < length; i++) {
-        key += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-
-      if (["robux", "adopt", "mm2"].includes(payment)) {
-        window.open("https://discord.gg/KkzMrTzSF4", "_blank");
-      } else {
-        const keyBox = document.getElementById('generated-key');
-        keyBox.style.display = 'block';
-        keyBox.innerText = `Key for ${type}:\n${key}\n\nDevice Info: ${deviceInfo}`;
-
-        // Send to backend for Discord DM (API should be hosted on your server)
-        fetch('/api/send-dm', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            key: key,
-            device: deviceInfo,
-            type: type
-          })
-        }).then(res => res.json())
-        .then(data => {
-          console.log("DM sent:", data);
-        }).catch(err => {
-          console.error("Failed to send DM:", err);
-        });
-      }
-    }
+    // Render the Keys component
+    ReactDOM.render(<Keys />, document.getElementById('app'));
   </script>
 </body>
 </html>
