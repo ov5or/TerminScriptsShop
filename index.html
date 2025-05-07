@@ -7,34 +7,31 @@
   <style>
     * { box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #0e0e0e;
-      color: white;
+      background: #121212;
+      color: #e0e0e0;
     }
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #1f1f1f;
+      background: #1e1e1e;
       padding: 1rem 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      border-bottom: 1px solid #333;
     }
     nav .tabs {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
     }
     nav a {
-      color: white;
+      color: #e0e0e0;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #0f0;
-    }
-    nav .discord img {
-      transition: transform 0.3s;
+      color: #6c63ff;
     }
     nav .discord img:hover {
       transform: scale(1.1);
@@ -42,63 +39,77 @@
     .tab-content {
       display: none;
       padding: 2rem;
-      animation: fadeIn 0.3s ease-in-out;
     }
     .tab-content.active {
       display: block;
+      animation: fadeIn 0.4s ease-in-out;
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     textarea {
       width: 100%;
       height: 100px;
-      background: #191919;
-      color: #0f0;
+      background: #1e1e1e;
+      color: #ffffff;
       font-family: monospace;
       padding: 1rem;
-      border: 1px solid #333;
+      border: 1px solid #444;
       border-radius: 10px;
       resize: none;
     }
     .script-block {
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
     .copy-btn {
-      background: linear-gradient(to right, #0f0, #0a0);
+      margin-top: 0.5rem;
+      background: #6c63ff;
       border: none;
       padding: 0.6rem 1.2rem;
-      cursor: pointer;
+      color: #fff;
       font-weight: bold;
-      color: #000;
-      border-radius: 8px;
+      border-radius: 6px;
+      cursor: pointer;
       transition: background 0.3s;
     }
     .copy-btn:hover {
-      background: linear-gradient(to right, #00cc00, #009900);
+      background: #574fd6;
     }
     h2 {
-      color: #0f0;
+      color: #6c63ff;
     }
     ul {
       line-height: 1.8;
     }
     .keys-boxes {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      flex-wrap: wrap;
     }
     .key-box {
-      flex: 1;
-      background: #1a1a1a;
+      background: #2a2a2a;
       padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid #333;
+      border-radius: 10px;
+      border: 1px solid #444;
+      text-align: center;
     }
     .key-box h3 {
-      color: #0f0;
+      color: #6c63ff;
       margin-top: 0;
+    }
+    .key-box button {
+      margin-top: 1rem;
+      background: #6c63ff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .key-box button:hover {
+      background: #574fd6;
     }
   </style>
 </head>
@@ -119,19 +130,19 @@
   <div id="home" class="tab-content active">
     <h2>Termin Scripts Game Features Universal Script</h2>
     <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/refs/heads/main/Script.lua"))()</textarea>
+      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Script.lua"))()</textarea>
       <button class="copy-btn" onclick="copyText(this)">Copy</button>
     </div>
 
     <h2>Termin Scripts Universal Script</h2>
     <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/refs/heads/main/Universal.lua"))()</textarea>
+      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Universal.lua"))()</textarea>
       <button class="copy-btn" onclick="copyText(this)">Copy</button>
     </div>
 
     <h2>GuardLink Control Script</h2>
     <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/refs/heads/main/Control.lua"))()</textarea>
+      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Control.lua"))()</textarea>
       <button class="copy-btn" onclick="copyText(this)">Copy</button>
     </div>
   </div>
@@ -141,39 +152,39 @@
     <div class="keys-boxes">
       <div class="key-box">
         <h3>7 Days Key</h3>
-        <p>Price: $3</p>
+        <p>$3</p>
+        <button>Buy Now</button>
       </div>
       <div class="key-box">
         <h3>30 Days Key</h3>
-        <p>Price: $10</p>
+        <p>$10</p>
+        <button>Buy Now</button>
       </div>
       <div class="key-box">
         <h3>Lifetime Key</h3>
-        <p>Price: $30</p>
+        <p>$30</p>
+        <button>Buy Now</button>
       </div>
     </div>
-    <h3>Accepted Payment Methods:</h3>
+    <h3 style="margin-top:2rem;">Accepted Payment Methods</h3>
     <ul>
       <li>PayPal</li>
       <li>Crypto</li>
       <li>Robux</li>
       <li>UC</li>
       <li>Adopt Me Pets</li>
-      <li>And More...</li>
+      <li>More on Discord...</li>
     </ul>
-    <p>Customize this section with your preferred payment method details or links to your payment form/store.</p>
   </div>
 
   <div id="about" class="tab-content">
     <h2>About Termin Script</h2>
-    <p>Termin Script offers powerful tools for Roblox games, including universal features, automation, protection, and control functionalities to enhance your experience. Stay safe, stay strong, and dominate with Termin!</p>
+    <p>Termin Script is a powerful and universal script hub for Roblox games. We offer automation tools, controls, and utility scripts to enhance your experience. Stay safe, dominate the game, and explore the features in style!</p>
   </div>
 
   <script>
     function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
     }
 
