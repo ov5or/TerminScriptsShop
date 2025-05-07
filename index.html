@@ -9,23 +9,23 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #121212;
-      color: #e0e0e0;
+      background: #ffffff;
+      color: #121212;
     }
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #1e1e1e;
+      background: #f2f2f2;
       padding: 1rem 2rem;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #ccc;
     }
     nav .tabs {
       display: flex;
       gap: 2rem;
     }
     nav a {
-      color: #e0e0e0;
+      color: #121212;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s;
@@ -51,11 +51,11 @@
     textarea {
       width: 100%;
       height: 100px;
-      background: #1e1e1e;
-      color: #ffffff;
+      background: #f7f7f7;
+      color: #000;
       font-family: monospace;
       padding: 1rem;
-      border: 1px solid #444;
+      border: 1px solid #ccc;
       border-radius: 10px;
       resize: none;
     }
@@ -71,7 +71,11 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+    }
+    .copy-btn:active {
+      transform: scale(0.95);
+      background: #483dff;
     }
     .copy-btn:hover {
       background: #574fd6;
@@ -88,10 +92,10 @@
       gap: 2rem;
     }
     .key-box {
-      background: #2a2a2a;
+      background: #f2f2f2;
       padding: 1rem;
       border-radius: 10px;
-      border: 1px solid #444;
+      border: 1px solid #ccc;
       text-align: center;
     }
     .key-box h3 {
@@ -107,9 +111,23 @@
       color: #fff;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .key-box button:active {
+      transform: scale(0.95);
+      background: #483dff;
     }
     .key-box button:hover {
       background: #574fd6;
+    }
+    .payment-methods {
+      margin-top: 1rem;
+    }
+    .payment-methods select {
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -122,7 +140,7 @@
     </div>
     <div class="discord">
       <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" alt="Discord" width="30" />
+        <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
       </a>
     </div>
   </nav>
@@ -167,14 +185,16 @@
       </div>
     </div>
     <h3 style="margin-top:2rem;">Accepted Payment Methods</h3>
-    <ul>
-      <li>PayPal</li>
-      <li>Crypto</li>
-      <li>Robux</li>
-      <li>UC</li>
-      <li>Adopt Me Pets</li>
-      <li>More on Discord...</li>
-    </ul>
+    <div class="payment-methods">
+      <label for="payment-select">Select Payment:</label>
+      <select id="payment-select">
+        <option value="paypal">PayPal</option>
+        <option value="crypto">Crypto</option>
+        <option value="robux">Robux</option>
+        <option value="uc">UC</option>
+        <option value="pets">Adopt Me Pets</option>
+      </select>
+    </div>
   </div>
 
   <div id="about" class="tab-content">
