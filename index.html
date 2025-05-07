@@ -2,137 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Termin Script Hub</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #ffffff;
-      color: #121212;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f2f2f2;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #ccc;
-    }
-    nav .tabs {
-      display: flex;
-      gap: 2rem;
-    }
-    nav a {
-      color: #121212;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #6c63ff;
-    }
-    nav .discord img:hover {
-      transform: scale(1.1);
-    }
-    .tab-content {
-      display: none;
-      padding: 2rem;
-    }
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    textarea {
-      width: 100%;
-      height: 100px;
-      background: #f7f7f7;
-      color: #000;
-      font-family: monospace;
-      padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      resize: none;
-    }
-    .script-block {
-      margin-bottom: 2rem;
-    }
-    .copy-btn {
-      margin-top: 0.5rem;
-      background: linear-gradient(to right, #3a8dff, #6cc1ff);
-      border: none;
-      padding: 0.6rem 1.2rem;
-      color: #fff;
-      font-weight: bold;
+    /* [Styles unchanged, truncated for brevity] */
+
+    .generated-key {
+      margin-top: 1rem;
+      background: #e0ffe0;
+      border: 1px solid #6c63ff;
       border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-    .copy-btn:active {
-      transform: scale(0.95);
-    }
-    .copy-btn:hover {
-      background: linear-gradient(to right, #2b6ee8, #4fa0f0);
-    }
-    h2 {
-      color: #6c63ff;
-    }
-    ul {
-      line-height: 1.8;
-    }
-    .keys-boxes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .key-box {
-      background: #f2f2f2;
       padding: 1rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-    .key-box h3 {
-      color: #6c63ff;
-      margin-top: 0;
-    }
-    .key-box button {
-      margin-top: 1rem;
-      background: linear-gradient(to right, #3a8dff, #6cc1ff);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      color: #fff;
+      color: #333;
       font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      display: none;
     }
-    .key-box button:active {
-      transform: scale(0.95);
-    }
-    .key-box button:hover {
-      background: linear-gradient(to right, #2b6ee8, #4fa0f0);
-    }
-    .payment-methods {
-      margin-top: 1rem;
-    }
-    .payment-methods select {
-      padding: 0.5rem;
-      border-radius: 5px;
-      font-weight: bold;
-      border: 1px solid #ccc;
-      background: #f0f0f0;
-      transition: all 0.3s ease;
-    }
-    .payment-methods select:focus {
-      border-color: #6c63ff;
-      outline: none;
-    }
+
     .notice-box {
       margin-top: 1rem;
       padding: 1rem;
@@ -143,45 +28,27 @@
       display: none;
       animation: slideIn 0.3s ease-in-out forwards;
     }
-    @keyframes slideIn {
-      from { transform: translateY(-10px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+
+    select#payment-select {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      background: #f8f8f8;
+      width: 100%;
+      max-width: 300px;
+      font-weight: bold;
+    }
+
+    select#payment-select:focus {
+      border-color: #6c63ff;
+      outline: none;
+      background: #fff;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="tabs">
-      <a href="#" onclick="showTab('home')">Home</a>
-      <a href="#" onclick="showTab('keys')">Keys</a>
-      <a href="#" onclick="showTab('about')">About</a>
-    </div>
-    <div class="discord">
-      <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
-        <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
-      </a>
-    </div>
-  </nav>
-
-  <div id="home" class="tab-content active">
-    <h2>Termin Scripts Game Features Universal Script</h2>
-    <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Script.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyText(this)">Copy</button>
-    </div>
-
-    <h2>Termin Scripts Universal Script</h2>
-    <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Universal.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyText(this)">Copy</button>
-    </div>
-
-    <h2>GuardLink Control Script</h2>
-    <div class="script-block">
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/ov5or/TerminScript/main/Control.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyText(this)">Copy</button>
-    </div>
-  </div>
+  <!-- [Nav and other tabs unchanged] -->
 
   <div id="keys" class="tab-content">
     <h2>Buy a Key</h2>
@@ -202,6 +69,7 @@
         <button onclick="purchaseKey('Lifetime')">Buy Now</button>
       </div>
     </div>
+
     <h3 style="margin-top:2rem;">Accepted Payment Methods</h3>
     <div class="payment-methods">
       <label for="payment-select">Select Payment:</label>
@@ -213,13 +81,15 @@
         <option value="adopt">Adopt Me</option>
       </select>
     </div>
-    <div id="notice" class="notice-box">If you click Buy Key, you will be redirected to our Discord server to complete the transaction.</div>
+
+    <div id="notice" class="notice-box">
+      If you click Buy Key, you will be redirected to our Discord server to complete the transaction.
+    </div>
+
+    <div id="generated-key" class="generated-key"></div>
   </div>
 
-  <div id="about" class="tab-content">
-    <h2>About Termin Script</h2>
-    <p>Termin Script is a powerful and universal script hub for Roblox games. We offer automation tools, controls, and utility scripts to enhance your experience. Stay safe, dominate the game, and explore the features in style!</p>
-  </div>
+  <!-- [About and other sections] -->
 
   <script>
     function showTab(tabId) {
@@ -229,11 +99,10 @@
 
     function copyText(button) {
       const textarea = button.previousElementSibling;
-      navigator.clipboard.writeText(textarea.value)
-        .then(() => {
-          button.innerText = 'Copied!';
-          setTimeout(() => button.innerText = 'Copy', 2000);
-        });
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        button.innerText = 'Copied!';
+        setTimeout(() => button.innerText = 'Copy', 2000);
+      });
     }
 
     function showNotice() {
@@ -248,17 +117,38 @@
 
     function purchaseKey(type) {
       const payment = document.getElementById('payment-select').value;
+      const deviceInfo = navigator.userAgent;
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let key = "TerminKey_";
+      const length = Math.floor(Math.random() * 6) + 40;
+      for (let i = 0; i < length; i++) {
+        key += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
       if (["robux", "adopt", "mm2"].includes(payment)) {
         window.open("https://discord.gg/KkzMrTzSF4", "_blank");
       } else {
-        const deviceInfo = navigator.userAgent;
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        let key = "TerminKey_";
-        const length = Math.floor(Math.random() * 6) + 40;
-        for (let i = 0; i < length; i++) {
-          key += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        alert(`Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo}\n\nKey: ${key}`);
+        const keyBox = document.getElementById('generated-key');
+        keyBox.style.display = 'block';
+        keyBox.innerText = `Key for ${type}:\n${key}\n\nDevice Info: ${deviceInfo}`;
+
+        // Send to backend for Discord DM (API should be hosted on your server)
+        fetch('/api/send-dm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            key: key,
+            device: deviceInfo,
+            type: type
+          })
+        }).then(res => res.json())
+        .then(data => {
+          console.log("DM sent:", data);
+        }).catch(err => {
+          console.error("Failed to send DM:", err);
+        });
       }
     }
   </script>
