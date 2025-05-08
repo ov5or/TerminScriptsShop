@@ -147,6 +147,61 @@
       from { transform: translateY(-10px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+      #about {
+    background: linear-gradient(135deg, #1a1a1a, #333333); /* Gradient background */
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+    width: 80%;
+    margin: 30px auto;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #about:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Title Styling */
+  .about-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f5a623;
+    text-transform: uppercase;
+  }
+
+  /* Description Text Styling */
+  .about-description {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 20px;
+  }
+
+  /* List Styling */
+  .about-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 18px;
+  }
+
+  .about-list li {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .about-list li::before {
+    content: '➤';  /* Custom bullet point */
+    position: absolute;
+    left: 0;
+    color: #f5a623;
+    font-size: 22px;
+  }
   </style>
 </head>
 <body>
@@ -216,10 +271,18 @@
     <div id="notice" class="notice-box">If you click Buy Key, you will be redirected to our Discord server to complete the transaction.</div>
   </div>
 
-  <div id="about" class="tab-content">
-    <h2>About Termin Script</h2>
-    <p>Termin Script is a powerful and universal script hub for Roblox games. We offer automation tools, controls, and utility scripts to enhance your experience. Stay safe, dominate the game, and explore the features in style!</p>
-  </div>
+<div id="about" class="tab-content">
+  <h2 class="about-title">About Termin Script</h2>
+  <p class="about-description">
+    Termin Script is a LuaU script made for Roblox with over 20,000+ lines of LuaU Roblox language in the main script. 
+    There are currently 2 kinds of scripts:
+  </p>
+  <ul class="about-list">
+    <li>1 - Termin Scripts In-Game Features (Universal)</li>
+    <li>2 - Termin Scripts Universal ("NEW")</li>
+    <li>3 - GuardLink Control ("Not Released")</li>
+  </ul>
+</div>
 
   <script>
     function showTab(tabId) {
@@ -266,11 +329,11 @@ function purchaseKey(type) {
     keyDisplay.style.background = "#e6e6ff";
     keyDisplay.style.borderRadius = "10px";
     keyDisplay.style.fontWeight = "bold";
-    keyDisplay.innerHTML = `
+    keyDisplay.innerHTML = 
       Your ${type} Key:<br><textarea id="generatedKey" readonly style="margin-top:0.5rem;width:100%;padding:0.5rem;">${key}</textarea>
       <button onclick="copyGeneratedKey()" style="margin-top:0.5rem;background:#6c63ff;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">Copy Key</button>
-    `;
-    alert(`Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo}`);
+    ;
+    alert(Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo});
 
     // Append to keys tab
     document.getElementById("keys").appendChild(keyDisplay);
