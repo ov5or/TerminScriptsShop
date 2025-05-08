@@ -295,7 +295,8 @@
     <div class="payment-methods">
       <label for="payment-select">Select Payment:</label>
       <select id="payment-select" onchange="showNotice()">
-        <option value="paypal">PayPal</option>
+        <option value="paypal">PayPal</option
+        <option value="cashapp">Cash App</option>
         <option value="fib">FIB</option>
         <option value="robux">Robux</option>
         <option value="mm2">MM2</option>
@@ -308,7 +309,7 @@
 <div id="about" class="tab-content">
   <h2 class="about-title">About Termin Script</h2>
   <p class="about-description">
-    Termin Script Is a <span class="highlight-text">Powerful LuaU</span> Made Script For <span class="highlight-text">Roblox</span> Made With Over <span class="highlight-text">20000 Lines</span> Of <span class="highlight-text">LuaU Roblox Language</span> and It Has <span class="highlight-text">2 Script Kinds ()</span>
+    Termin Script Is a <span class="highlight-text">Powerful LuaU</span> Made Script For <span class="highlight-text">Roblox</span> Made With Over <span class="highlight-text">20000 Lines</span> Of <span class="highlight-text">LuaU Roblox Language</span> and It Has <span class="highlight-text">2 Script Kinds (For Now)</span>
   </p>
 
   <ul class="script-kinds-list">
@@ -340,7 +341,7 @@
     function showNotice() {
       const payment = document.getElementById('payment-select').value;
       const notice = document.getElementById('notice');
-      if (["robux", "adopt", "mm2"].includes(payment)) {
+      if (["robux", "adopt", "mm2", "fib", "paypal", "cashapp"].includes(payment)) {
         notice.style.display = 'block';
       } else {
         notice.style.display = 'none';
@@ -350,7 +351,7 @@
     // Handle purchasing keys
     function purchaseKey(type) {
       const payment = document.getElementById('payment-select').value;
-      if (["robux", "adopt", "mm2"].includes(payment)) {
+      if (["robux", "adopt", "mm2", "fib", "paypal", "cashapp"].includes(payment)) {
         window.open("https://discord.gg/KkzMrTzSF4", "_blank");
       } else {
         const deviceInfo = navigator.userAgent;
