@@ -222,20 +222,22 @@
   </div>
 
   <script>
+    // Ensure tabs work correctly
     function showTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
     }
 
+    // Ensure copy-to-clipboard functionality works
     function copyText(button) {
       const textarea = button.previousElementSibling;
-      navigator.clipboard.writeText(textarea.value)
-        .then(() => {
-          button.innerText = 'Copied!';
-          setTimeout(() => button.innerText = 'Copy', 2000);
-        });
+      textarea.select();
+      document.execCommand('copy');
+      button.innerText = 'Copied!';
+      setTimeout(() => button.innerText = 'Copy', 2000);
     }
 
+    // Show notice if certain payment methods are selected
     function showNotice() {
       const payment = document.getElementById('payment-select').value;
       const notice = document.getElementById('notice');
@@ -246,44 +248,43 @@
       }
     }
 
-function purchaseKey(type) {
-  const payment = document.getElementById('payment-select').value;
-  if (["robux", "adopt", "mm2"].includes(payment)) {
-    window.open("https://discord.gg/KkzMrTzSF4", "_blank");
-  } else {
-    const deviceInfo = navigator.userAgent;
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let key = "TerminKey_";
-    const length = Math.floor(Math.random() * 6) + 40;
-    for (let i = 0; i < length; i++) {
-      key += chars.charAt(Math.floor(Math.random() * chars.length));
+    // Handle purchasing keys
+    function purchaseKey(type) {
+      const payment = document.getElementById('payment-select').value;
+      if (["robux", "adopt", "mm2"].includes(payment)) {
+        window.open("https://discord.gg/KkzMrTzSF4", "_blank");
+      } else {
+        const deviceInfo = navigator.userAgent;
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let key = "TerminKey_";
+        const length = Math.floor(Math.random() * 6) + 40;
+        for (let i = 0; i < length; i++) {
+          key += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+
+        // Show the key in a styled box
+        const keyDisplay = document.createElement("div");
+        keyDisplay.style.marginTop = "1rem";
+        keyDisplay.style.padding = "1rem";
+        keyDisplay.style.background = "#e6e6ff";
+        keyDisplay.style.borderRadius = "10px";
+        keyDisplay.style.fontWeight = "bold";
+        keyDisplay.innerHTML = `Your ${type} Key:<br><textarea id="generatedKey" readonly style="margin-top:0.5rem;width:100%;padding:0.5rem;">${key}</textarea>
+          <button onclick="copyGeneratedKey()" style="margin-top:0.5rem;background:#6c63ff;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">Copy Key</button>`;
+        alert(`Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo}`);
+
+        // Append to keys tab
+        document.getElementById("keys").appendChild(keyDisplay);
+      }
     }
 
-    // Show the key in a styled box
-    const keyDisplay = document.createElement("div");
-    keyDisplay.style.marginTop = "1rem";
-    keyDisplay.style.padding = "1rem";
-    keyDisplay.style.background = "#e6e6ff";
-    keyDisplay.style.borderRadius = "10px";
-    keyDisplay.style.fontWeight = "bold";
-    keyDisplay.innerHTML = 
-      Your ${type} Key:<br><textarea id="generatedKey" readonly style="margin-top:0.5rem;width:100%;padding:0.5rem;">${key}</textarea>
-      <button onclick="copyGeneratedKey()" style="margin-top:0.5rem;background:#6c63ff;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">Copy Key</button>
-    ;
-    alert(Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo});
-
-    // Append to keys tab
-    document.getElementById("keys").appendChild(keyDisplay);
-  }
-}
-
-function copyGeneratedKey() {
-  const keyField = document.getElementById("generatedKey");
-  navigator.clipboard.writeText(keyField.value).then(() => {
-    alert("Key copied to clipboard!");
-  });
-}
-
+    // Copy the generated key to clipboard
+    function copyGeneratedKey() {
+      const keyField = document.getElementById("generatedKey");
+      keyField.select();
+      document.execCommand('copy');
+      alert("Key copied to clipboard!");
+    }
   </script>
 </body>
 </html>
