@@ -87,8 +87,40 @@
   color: #ff3366; /* Slight color shift on hover */
   transform: scale(1.1);
 }
+ 
+.script-kinds-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #f0f0f0;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-family: 'Poppins', sans-serif;
+}
 
-/* Animation to make it appear cool */
+.script-kinds-list li {
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.script-kinds-list li:hover {
+  transform: scale(1.05);
+  background: rgba(255, 102, 204, 0.2);
+}
+
+.list-number {
+  font-weight: bold;
+  color: #ff66cc;
+  margin-right: 0.5rem;
+}
+
+
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -275,8 +307,17 @@
 
 <div id="about" class="tab-content">
   <h2 class="about-title">About Termin Script</h2>
-  <p class="about-description">Termin Script Is a <span class="highlight-text">Powerful LuaU</span> Made Script For <span class="highlight-text">Roblox</span> Made With Over  <span class="highlight-text">20000 Lines</span> Of <span class="highlight-text">LuaU Roblox Language</span>, and <span class="highlight-text">utility scripts</span> to enhance your experience. Stay safe, dominate the game, and explore the features in style!</p>
+  <p class="about-description">
+    Termin Script Is a <span class="highlight-text">Powerful LuaU</span> Made Script For <span class="highlight-text">Roblox</span> Made With Over <span class="highlight-text">20000 Lines</span> Of <span class="highlight-text">LuaU Roblox Language</span> and It Has <span class="highlight-text">2 Script Kinds ()</span>
+  </p>
+
+  <ul class="script-kinds-list">
+    <li><span class="list-number">1</span> – Termin Script’s In-Game Features <span class="highlight-text">Universal</span></li>
+    <li><span class="list-number">2</span> – Termin Script’s Universal <span class="highlight-text">"New"</span></li>
+    <li><span class="list-number">3</span> – GuardLink Control <span class="highlight-text">"Not Released"</span></li>
+  </ul>
 </div>
+
 
 
   <script>
