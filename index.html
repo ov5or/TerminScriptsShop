@@ -370,12 +370,6 @@ function showNotice() {
     case "paypal":
       message = "PayPal: terminpaypal@gmail.com — Send payment then DM with proof.";
       break;
-    case "cashapp":
-      message = "Cash App: $TerminScripts — Send payment then DM with proof.";
-      break;
-    case "fib":
-      message = "FIB: @terminscripts — Message us after sending payment.";
-      break;
     case "robux":
       message = "Robux: DM us for instructions (group funds or gamepass).";
       break;
@@ -390,7 +384,7 @@ function showNotice() {
 
 function purchaseKey(type) {
   const payment = document.getElementById('payment-select').value;
-  if (["robux", "adopt", "mm2", "fib", "paypal", "cashapp"].includes(payment)) {
+  if (["robux", "adopt", "mm2", "paypal"].includes(payment)) {
     window.open("https://discord.gg/KkzMrTzSF4", "_blank");
   } else {
     const deviceInfo = navigator.userAgent;
