@@ -241,69 +241,28 @@ textarea.luau-script {
       border-color: #6c63ff;
       outline: none;
     }
-    .settings {
-  position: relative;
-  margin-left: 1rem;
-}
-
-.settings-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.settings-btn:hover {
-  transform: scale(1.1);
-}
-
-.settings-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 2.5rem;
-  background: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  z-index: 999;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.settings-menu .toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-}
-
 body.dark-mode {
   background: #121212;
-  color: #f0f0f0;
+  color: #ffffff;
 }
 
 body.dark-mode nav {
   background: #1e1e1e;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #444;
 }
 
 body.dark-mode .key-box,
+body.dark-mode textarea,
 body.dark-mode .payment-methods select,
-body.dark-mode .script-block textarea,
-body.dark-mode .settings-menu {
+body.dark-mode .notice-box,
+body.dark-mode #settingsPanel {
   background: #2a2a2a;
   color: #f0f0f0;
-  border-color: #444;
+  border-color: #555;
 }
 
 body.dark-mode .copy-btn,
 body.dark-mode .key-box button {
-  background: linear-gradient(to right, #444, #666);
-}
-
-body.dark-mode .copy-btn:hover,
-body.dark-mode .key-box button:hover {
   background: linear-gradient(to right, #555, #777);
 }
 
@@ -330,41 +289,23 @@ body.dark-mode .key-box button:hover {
       <a href="#" onclick="showTab('keys')">Keys</a>
       <a href="#" onclick="showTab('about')">About</a>
     </div>
-    <div class="discord">
-      <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
-        <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
-      </a>
-    </div>
-  </nav>
-
-  <div class="settings">
-  <button onclick="toggleSettingsMenu()" class="settings-btn">⚙️</button>
-  <div id="settings-menu" class="settings-menu">
-    <label class="toggle-container">
-      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
-      Dark Mode
-    </label>
-  </div>
+<div class="discord" style="display: flex; align-items: center; gap: 1rem;">
+  <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
+  </a>
+  <button onclick="toggleSettings()" style="background: none; border: none; cursor: pointer;">
+    ⚙️
+  </button>
 </div>
 
-function toggleSettingsMenu() {
-  const menu = document.getElementById("settings-menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
 
-// Dark mode toggle logic
-function toggleDarkMode() {
-  const isDark = document.getElementById("darkModeToggle").checked;
-  document.body.classList.toggle("dark-mode", isDark);
-  localStorage.setItem("darkMode", isDark);
-}
 
-// Load saved mode on page load
-window.onload = function () {
-  const darkPref = localStorage.getItem("darkMode") === "true";
-  document.getElementById("darkModeToggle").checked = darkPref;
-  document.body.classList.toggle("dark-mode", darkPref);
-};
+<div id="settingsPanel" style="display: none; position: fixed; top: 60px; right: 20px; background: #f2f2f2; padding: 1rem; border: 1px solid #ccc; border-radius: 10px; z-index: 1000;">
+  <label>
+    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+    Enable Dark Mode
+  </label>
+</div>
 
 
 
@@ -457,6 +398,14 @@ window.onload = function () {
       button.innerText = 'Copy';
     }, 1500);
   }
+function toggleSettings() {
+  const panel = document.getElementById("settingsPanel");
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
 
 function showNotice() {
   const payment = document.getElementById("payment-select").value;
