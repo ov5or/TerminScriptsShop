@@ -5,17 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Termin Script Hub</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       background: #ffffff;
       color: #121212;
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -24,131 +20,156 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #ccc;
     }
-
     nav .tabs {
       display: flex;
       gap: 2rem;
     }
-
     nav a {
       color: #121212;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: #6c63ff;
     }
-
     nav .discord img:hover {
       transform: scale(1.1);
     }
-
     .tab-content {
       display: none;
       padding: 2rem;
     }
-
     .tab-content.active {
       display: block;
       animation: fadeIn 0.4s ease-in-out;
     }
+textarea.luau-script {
+  font-family: 'Courier New', monospace;
+  background-color: #ffffff;
+  color: #000000;
+  width: 100%;
+  height: 100px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
 
-    textarea,
-    textarea.luau-script {
-      font-family: 'Courier New', monospace;
-      background-color: #ffffff;
-      color: #000000;
+/* About Section Styling */
+#about {
+  background: radial-gradient(circle, rgba(51, 51, 255, 0.2), rgba(255, 0, 255, 0.3)); /* Smooth gradient background */
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 2rem;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.6s ease-in-out;
+  border: none;
+}
+
+.about-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #fff;  /* White color for better contrast */
+  text-align: center;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.about-description {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #f0f0f0; /* Light gray for better readability */
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.highlight-text {
+  color: #ff66cc; /* Vibrant pink for highlighting */
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.highlight-text:hover {
+  color: #ff3366; /* Slight color shift on hover */
+  transform: scale(1.1);
+}
+ 
+.script-kinds-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #f0f0f0;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-family: 'Poppins', sans-serif;
+}
+
+.script-kinds-list li {
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.script-kinds-list li:hover {
+  transform: scale(1.05);
+  background: rgba(255, 102, 204, 0.2);
+}
+
+.list-number {
+  font-weight: bold;
+  color: #ff66cc;
+  margin-right: 0.5rem;
+}
+
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    textarea {
       width: 100%;
       height: 100px;
+      background: #f7f7f7;
+      color: #000;
+      font-family: monospace;
       padding: 1rem;
       border: 1px solid #ccc;
       border-radius: 10px;
       resize: none;
-      overflow: auto;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      line-height: 1.4;
     }
-
-    #about {
-      background: radial-gradient(circle, rgba(51, 51, 255, 0.2), rgba(255, 0, 255, 0.3));
-      padding: 3rem 2rem;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      margin: 2rem auto 0 auto;
-      max-width: 90%;
-      animation: fadeInUp 0.6s ease-in-out;
-      border: none;
-    }
-
-    .about-title {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: #fff;
-      text-align: center;
-      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-description {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      color: #f0f0f0;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .highlight-text {
-      color: #ff66cc;
-      font-weight: bold;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .highlight-text:hover {
-      color: #ff3366;
-      transform: scale(1.1);
-    }
-
-    .script-kinds-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 1.5rem;
-      text-align: center;
-      color: #f0f0f0;
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .script-kinds-list li {
-      margin: 0.5rem 0;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.7rem 1rem;
-      border-radius: 12px;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .script-kinds-list li:hover {
-      transform: scale(1.05);
-      background: rgba(255, 102, 204, 0.2);
-    }
-
-    .list-number {
-      font-weight: bold;
-      color: #ff66cc;
-      margin-right: 0.5rem;
-    }
-
-    .script-block {
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
+.script-block {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
     .copy-btn {
       margin-top: 0.5rem;
       background: linear-gradient(to right, #3a8dff, #6cc1ff);
@@ -160,29 +181,23 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
-
     .copy-btn:active {
       transform: scale(0.95);
     }
-
     .copy-btn:hover {
       background: linear-gradient(to right, #2b6ee8, #4fa0f0);
     }
-
     h2 {
       color: #6c63ff;
     }
-
     ul {
       line-height: 1.8;
     }
-
     .keys-boxes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
     }
-
     .key-box {
       background: #f2f2f2;
       padding: 1rem;
@@ -190,12 +205,10 @@
       border: 1px solid #ccc;
       text-align: center;
     }
-
     .key-box h3 {
       color: #6c63ff;
       margin-top: 0;
     }
-
     .key-box button {
       margin-top: 1rem;
       background: linear-gradient(to right, #3a8dff, #6cc1ff);
@@ -207,19 +220,15 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
-
     .key-box button:active {
       transform: scale(0.95);
     }
-
     .key-box button:hover {
       background: linear-gradient(to right, #2b6ee8, #4fa0f0);
     }
-
     .payment-methods {
       margin-top: 1rem;
     }
-
     .payment-methods select {
       padding: 0.5rem;
       border-radius: 5px;
@@ -228,12 +237,10 @@
       background: #f0f0f0;
       transition: all 0.3s ease;
     }
-
     .payment-methods select:focus {
       border-color: #6c63ff;
       outline: none;
     }
-
     .notice-box {
       margin-top: 1rem;
       padding: 1rem;
@@ -244,63 +251,9 @@
       display: none;
       animation: slideIn 0.3s ease-in-out forwards;
     }
-
-    body.dark-mode {
-      background: #121212;
-      color: #ffffff;
-    }
-
-    body.dark-mode nav {
-      background: #1e1e1e;
-      border-bottom: 1px solid #444;
-    }
-
-    body.dark-mode .key-box,
-    body.dark-mode textarea,
-    body.dark-mode .payment-methods select,
-    body.dark-mode .notice-box,
-    body.dark-mode #settingsPanel {
-      background: #2a2a2a;
-      color: #f0f0f0;
-      border-color: #555;
-    }
-
-    body.dark-mode .copy-btn,
-    body.dark-mode .key-box button {
-      background: linear-gradient(to right, #555, #777);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes slideIn {
-      from {
-        transform: translateY(-10px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -311,24 +264,12 @@
       <a href="#" onclick="showTab('keys')">Keys</a>
       <a href="#" onclick="showTab('about')">About</a>
     </div>
-
- <div class="discord" style="display: flex; align-items: center; gap: 1rem;">
-  <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
-    <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
-  </a>
-  <button onclick="toggleSettings()" style="background: none; border: none; cursor: pointer;">
-    ⚙️
-  </button>
-</div>
-
-<div id="settingsPanel" style="display: none; position: fixed; top: 60px; right: 20px; background: #f2f2f2; padding: 1rem; border: 1px solid #ccc; border-radius: 10px; z-index: 1000;">
-  <label>
-    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
-    Enable Dark Mode
-  </label>
-</div>
-
-
+    <div class="discord">
+      <a href="https://discord.gg/KkzMrTzSF4" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/000000/discord-logo.png" alt="Discord" width="30" />
+      </a>
+    </div>
+  </nav>
 
 <div id="home" class="tab-content active">
   <h2>Termin Scripts V2 Script</h2>
@@ -405,15 +346,6 @@
 
 
 <script>
-  function toggleSettings() {
-  const panel = document.getElementById("settingsPanel");
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
-}
-
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-
   function showTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
@@ -475,10 +407,10 @@ function purchaseKey(type) {
     keyDisplay.style.background = "#e6e6ff";
     keyDisplay.style.borderRadius = "10px";
     keyDisplay.style.fontWeight = "bold";
-    keyDisplay.innerHTML = `Your ${type} Key:<br><textarea id="generatedKey" readonly style="margin-top:0.5rem;width:100%;padding:0.5rem;">${key}</textarea>
-      <button onclick="copyGeneratedKey()" style="margin-top:0.5rem;background:#6c63ff;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">Copy Key</button>`;
+    keyDisplay.innerHTML = Your ${type} Key:<br><textarea id="generatedKey" readonly style="margin-top:0.5rem;width:100%;padding:0.5rem;">${key}</textarea>
+      <button onclick="copyGeneratedKey()" style="margin-top:0.5rem;background:#6c63ff;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">Copy Key</button>;
 
-    alert(`Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo}`);
+    alert(Key for ${type} successfully purchased!\n\nDevice Info:\n${deviceInfo});
     document.getElementById("keys").appendChild(keyDisplay);
   }
 }
